@@ -1,1 +1,1 @@
-# super-smash-bros-ultimate-characters
+# Super Smash Bros. Ultimate Character Menu
