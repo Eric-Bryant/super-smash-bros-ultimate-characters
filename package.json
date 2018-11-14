@@ -1,0 +1,28 @@
+{
+  "name": "super-smash-bros-ultimate-characters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass src/css/main.scss build/css/main.css --output-style compressed | postcss build/css/main.css -d build/css/",
+    "build-js": "babel src/js -d build/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shmickle/super-smash-bros-ultimate-characters.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shmickle/super-smash-bros-ultimate-characters/issues"
+  },
+  "homepage": "https://github.com/shmickle/super-smash-bros-ultimate-characters#readme",
+  "devDependencies": {
+    "node-sass": "^4.10.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "postcss-cli": "^6.0.1",
+    "postcss-preset-env": "^6.4.0"
+  }
+}
