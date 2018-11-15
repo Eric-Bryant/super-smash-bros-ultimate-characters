@@ -1,17 +1,19 @@
 @import "../modules/all";
 
 .menu-wrapper {
-    margin: 0 auto;
-    width: 80vw;
+    margin: 100px auto;
+    width: 90vw;
+    // min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 
     .fighter {
         position: relative;
         flex-basis: 150px;
         height: 100px;
-        margin: 1px;
+        margin: 2.5px;
 
         img {
             width: 100%;
@@ -22,6 +24,7 @@
 
         p {
             position: absolute;
+            background: $black;
             text-transform: uppercase;
             width: 100%;
             bottom: 0;
@@ -29,10 +32,16 @@
             text-align: center;
             color: $white;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            line-height: 1.4rem;
             font-family: $selectScreenFont;
             text-shadow: 2px 2px 5px $black;
             margin: 0;
         }
+    }
+
+    [data-name='Mr. Game & Watch'] p,
+    [data-name='Pokemon Trainer'] p {
+        font-size: 1.1rem;
     }
 }
