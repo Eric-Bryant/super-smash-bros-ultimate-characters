@@ -134,7 +134,7 @@ class Character {
     }
 
     thumbnailHTML() {
-        return `<div class="fighter" data-name="${this.name}">
+        return `<div class="fighter" data-name="${this.name}" data-franchise="${this.franchise}">
                     <img src="${this.thumbnail}"/>
                     <p>${this.name}</p>
                 </div>`;

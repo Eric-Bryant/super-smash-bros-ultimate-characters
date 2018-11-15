@@ -121,7 +121,7 @@ function () {
   _createClass(Character, [{
     key: "thumbnailHTML",
     value: function thumbnailHTML() {
-      return "<div class=\"fighter\" data-name=\"".concat(this.name, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+      return "<div class=\"fighter\" data-name=\"".concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
     }
   }]);
 

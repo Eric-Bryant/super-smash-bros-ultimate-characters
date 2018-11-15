@@ -54,4 +54,8 @@
     [data-name='Pokemon Trainer'] p {
         font-size: 0.9rem;
     }
+
+    [data-franchise='Super Mario Bros.'] img {
+        background-image: linear-gradient(to bottom right, $marioRed, $marioGreen);
+    }
 }
