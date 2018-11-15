@@ -1,7 +1,7 @@
 @import "../modules/all";
 
 .menu-wrapper {
-    margin: 100px auto;
+    margin: 15px auto 0;
     width: 90vw;
     // min-height: 100vh;
     display: flex;
@@ -11,8 +11,8 @@
 
     .fighter {
         position: relative;
-        flex-basis: 150px;
-        height: 100px;
+        flex-basis: 125px;
+        height: 84px;
         margin: 2.5px;
 
         img {
@@ -40,8 +40,18 @@
         }
     }
 
+    [data-name='Captain Falcon'] p,
+    [data-name='Pirahna Plant'] p {
+        font-size: 1.1rem;
+    }
+
+    [data-name='Rosalina & Luna'] p,
+    [data-name='Zero Suit Samus'] p {
+        font-size: 1rem;
+    }
+
     [data-name='Mr. Game & Watch'] p,
     [data-name='Pokemon Trainer'] p {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 }
