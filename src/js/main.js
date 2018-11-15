@@ -3,7 +3,6 @@ window.onload = () => {
 
     // Array of Fighters
     const FIGHTERS = getFighters();
-
     // Display Fighters
     menu.innerHTML = FIGHTERS.map(fighter => {
         return fighter.thumbnailHTML();
@@ -61,11 +60,13 @@ function getFighters() {
     const WOLF = new Character(44, 'Wolf', 'Star Fox', 'wolf.png');
     const VILLAGER = new Character(45, 'Villager', 'Animal Crossing', 'villager.png');
     const MEGA_MAN = new Character(46, 'Mega Man', 'Mega Man', 'megaman.png');
-    const WII_FIT_TRAINER = new Character(47, 'Wii Fit Trainer', 'Wii Fit', 'wii-fit-trainer.png');
+    const WII_FIT_TRAINER = new Character(47, 'Wii Fit Trainer', 'N/A', 'wii-fit-trainer.png');
     const ROSALINA_AND_LUMA = new Character(48, 'Rosalina & Luna', 'Super Mario Bros.', 'rosalina.png');
     const LITTLE_MAC = new Character(49, 'Little Mac', 'Punch-out', 'little-mac.png');
     const GRENINJA = new Character(50, 'Greninja', 'Pokemon', 'greninja.png');
-    const MII_FIGHTERS = new Character(51, 'Mii Fighter', 'N/A', 'mii-fighter.png');
+    const MII_BRAWLER = new Character(51, 'Mii Brawler', 'N/A', 'mii-brawler.png');
+    const MII_SWORDFIGHTER = new Character(52, 'Mii Swordfighter', 'N/A', 'mii-swordfighter.png');
+    const MII_GUNNER = new Character(53, 'Mii Gunner', 'N/A', 'mii-gunner.png');
     const PALUTENA = new Character(54, 'Palutena', 'Kid Icarus', 'palutena.png');
     const PAC_MAN = new Character(55, 'Pac-Man', 'Pac-Man', 'pacman.png');
     const ROBIN = new Character(56, 'Robin', 'Fire Emblem', 'robin.png');
@@ -104,12 +105,13 @@ function getFighters() {
         DDD, OLIMAR, LUCARIO, ROB,
         TOON_LINK, WOLF, VILLAGER, MEGA_MAN,
         WII_FIT_TRAINER, ROSALINA_AND_LUMA,
-        LITTLE_MAC, GRENINJA, MII_FIGHTERS,
+        LITTLE_MAC, GRENINJA,
         PALUTENA, PAC_MAN, ROBIN, SHULK,
         BOWSER_JR, DUCK_HUNT, RYU, KEN,
         CLOUD, CORRIN, BAYONETTA, INKLING,
         RIDLEY, SIMON, RICHTER, K_ROOL,
-        ISABELLE, INCINEROAR, PIRAHNA_PLANT
+        ISABELLE, INCINEROAR, PIRAHNA_PLANT,
+        MII_BRAWLER, MII_SWORDFIGHTER, MII_GUNNER
     ];
 
     return FIGHTERS;
@@ -121,8 +123,27 @@ function sortByID(a, b) {
 }
 
 //Sort Fighter by Name Alphabetically
-function sortByName(a, b) {
-    return a.name > b.name;
+function sortBy(type) {
+    return function (a, b) {
+        let textA, textB;
+        if (type == 'name') {
+            textA = a.name.toUpperCase();
+            textB = b.name.toUpperCase();
+        } else if (type == 'franchise') {
+            textA = a.franchise.toUpperCase();
+            textB = b.franchise.toUpperCase();
+        }
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    }
+}
+
+// Sort Fighters by Franchise
+function showFranchiseOnly(fighters, franch) {
+    const sorted = fighters.filter(fighter => {
+        return fighter.franchise == franch;
+    });
+
+    return sorted;
 }
 
 class Character {

@@ -67,11 +67,13 @@ function getFighters() {
   var WOLF = new Character(44, 'Wolf', 'Star Fox', 'wolf.png');
   var VILLAGER = new Character(45, 'Villager', 'Animal Crossing', 'villager.png');
   var MEGA_MAN = new Character(46, 'Mega Man', 'Mega Man', 'megaman.png');
-  var WII_FIT_TRAINER = new Character(47, 'Wii Fit Trainer', 'Wii Fit', 'wii-fit-trainer.png');
+  var WII_FIT_TRAINER = new Character(47, 'Wii Fit Trainer', 'N/A', 'wii-fit-trainer.png');
   var ROSALINA_AND_LUMA = new Character(48, 'Rosalina & Luna', 'Super Mario Bros.', 'rosalina.png');
   var LITTLE_MAC = new Character(49, 'Little Mac', 'Punch-out', 'little-mac.png');
   var GRENINJA = new Character(50, 'Greninja', 'Pokemon', 'greninja.png');
-  var MII_FIGHTERS = new Character(51, 'Mii Fighter', 'N/A', 'mii-fighter.png');
+  var MII_BRAWLER = new Character(51, 'Mii Brawler', 'N/A', 'mii-brawler.png');
+  var MII_SWORDFIGHTER = new Character(52, 'Mii Swordfighter', 'N/A', 'mii-swordfighter.png');
+  var MII_GUNNER = new Character(53, 'Mii Gunner', 'N/A', 'mii-gunner.png');
   var PALUTENA = new Character(54, 'Palutena', 'Kid Icarus', 'palutena.png');
   var PAC_MAN = new Character(55, 'Pac-Man', 'Pac-Man', 'pacman.png');
   var ROBIN = new Character(56, 'Robin', 'Fire Emblem', 'robin.png');
@@ -92,7 +94,7 @@ function getFighters() {
   var INCINEROAR = new Character(69, 'Incineroar', 'Pokemon', 'incineroar.png');
   var PIRAHNA_PLANT = new Character(70, 'Pirahna Plant', 'Super Mario Bros.', 'pirahna-plant.png'); // Array of Fighters for Display Purposes
 
-  var FIGHTERS = [MARIO, DK, LINK, SAMUS, DARK_SAMUS, YOSHI, KIRBY, FOX, PIKACHU, LUIGI, NESS, CAPTAIN_FALCON, JIGGLYPUFF, PEACH, DAISY, BOWSER, ICE_CLIMBERS, SHEIK, ZELDA, DR_MARIO, PICHU, FALCO, MARTH, LUCINA, YOUNG_LINK, GANONDORF, MEWTWO, ROY, CHROM, GAME_AND_WATCH, META_KNIGHT, PIT, DARK_PIT, ZERO_SUIT_SAMUS, WARIO, SNAKE, IKE, POKEMON_TRAINER, DIDDY_KONG, LUCAS, SONIC, DDD, OLIMAR, LUCARIO, ROB, TOON_LINK, WOLF, VILLAGER, MEGA_MAN, WII_FIT_TRAINER, ROSALINA_AND_LUMA, LITTLE_MAC, GRENINJA, MII_FIGHTERS, PALUTENA, PAC_MAN, ROBIN, SHULK, BOWSER_JR, DUCK_HUNT, RYU, KEN, CLOUD, CORRIN, BAYONETTA, INKLING, RIDLEY, SIMON, RICHTER, K_ROOL, ISABELLE, INCINEROAR, PIRAHNA_PLANT];
+  var FIGHTERS = [MARIO, DK, LINK, SAMUS, DARK_SAMUS, YOSHI, KIRBY, FOX, PIKACHU, LUIGI, NESS, CAPTAIN_FALCON, JIGGLYPUFF, PEACH, DAISY, BOWSER, ICE_CLIMBERS, SHEIK, ZELDA, DR_MARIO, PICHU, FALCO, MARTH, LUCINA, YOUNG_LINK, GANONDORF, MEWTWO, ROY, CHROM, GAME_AND_WATCH, META_KNIGHT, PIT, DARK_PIT, ZERO_SUIT_SAMUS, WARIO, SNAKE, IKE, POKEMON_TRAINER, DIDDY_KONG, LUCAS, SONIC, DDD, OLIMAR, LUCARIO, ROB, TOON_LINK, WOLF, VILLAGER, MEGA_MAN, WII_FIT_TRAINER, ROSALINA_AND_LUMA, LITTLE_MAC, GRENINJA, PALUTENA, PAC_MAN, ROBIN, SHULK, BOWSER_JR, DUCK_HUNT, RYU, KEN, CLOUD, CORRIN, BAYONETTA, INKLING, RIDLEY, SIMON, RICHTER, K_ROOL, ISABELLE, INCINEROAR, PIRAHNA_PLANT, MII_BRAWLER, MII_SWORDFIGHTER, MII_GUNNER];
   return FIGHTERS;
 } //Sort Fighter by Order of Appearance in Smash Series
 
@@ -102,8 +104,28 @@ function sortByID(a, b) {
 } //Sort Fighter by Name Alphabetically
 
 
-function sortByName(a, b) {
-  return a.name > b.name;
+function sortBy(type) {
+  return function (a, b) {
+    var textA, textB;
+
+    if (type == 'name') {
+      textA = a.name.toUpperCase();
+      textB = b.name.toUpperCase();
+    } else if (type == 'franchise') {
+      textA = a.franchise.toUpperCase();
+      textB = b.franchise.toUpperCase();
+    }
+
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  };
+} // Sort Fighters by Franchise
+
+
+function showFranchiseOnly(fighters, franch) {
+  var sorted = fighters.filter(function (fighter) {
+    return fighter.franchise == franch;
+  });
+  return sorted;
 }
 
 var Character =
