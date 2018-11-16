@@ -6,11 +6,11 @@ body {
     margin: 0;
 }
 
-html {
-    box-sizing: border-box;
-}
-
 body {
     background-image: url('../../media/smashball-background.png');
     background-size: cover;
+}
+
+* {
+    box-sizing: border-box;
 }

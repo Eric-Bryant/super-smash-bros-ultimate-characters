@@ -7,6 +7,8 @@ window.onload = () => {
     menu.innerHTML = FIGHTERS.map(fighter => {
         return fighter.thumbnailHTML();
     }).join('');
+
+    applySelectedFrame();
 }
 
 function getFighters() {
@@ -122,7 +124,7 @@ function sortByID(a, b) {
     return a.id - b.id;
 }
 
-//Sort Fighter by Name Alphabetically
+//Sort Fighter by Name or Franchise Alphabetically
 function sortBy(type) {
     return function (a, b) {
         let textA, textB;
@@ -144,6 +146,38 @@ function showFranchiseOnly(fighters, franch) {
     });
 
     return sorted;
+}
+
+/*
+============================
+BREAK UP THIS WHOLE FUNCTION
+============================
+*/
+function applySelectedFrame() {
+    const fighterFrames = Array.from(document.querySelectorAll('.fighter'));
+    fighterFrames
+        .map(frame => {
+            frame.addEventListener('click', function () {
+                // Check if other fighters are already selected, remove if they are
+                Array
+                    .from(document.querySelectorAll('.fighter'))
+                    .map(char => {
+                        if (char.classList.contains('selected') && char != frame) {
+                            char.classList.remove('selected');
+                        }
+                    });
+
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                } else {
+                    this.classList.add('selected');
+                }
+
+                // Use this for announcers
+                const announcer = new Audio(`media/sounds/${this.dataset.name}.wav`);
+                announcer.play();
+            });
+        });
 }
 
 class Character {
