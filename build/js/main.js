@@ -7,15 +7,127 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 window.onload = function () {
-  var menu = document.querySelector('.menu-wrapper'); // Array of Fighters
+  var sortResetBtn = document.querySelector('#sort-reset');
+  var sortNumberBtn = document.querySelector('#sort-number');
+  var sortNameBtn = document.querySelector('#sort-name');
+  var sortFranchiseBtn = document.querySelector('#sort-franchise');
+  renderFighters(getFighters());
+  frameController();
+  sortResetBtn.addEventListener('click', function () {
+    renderFighters(getFighters());
+    frameController();
+  });
+  sortNumberBtn.addEventListener('click', function () {
+    renderFighters(getFighters().sort(sortByID));
+    frameController();
+  });
+  sortNameBtn.addEventListener('click', function () {
+    renderFighters(getFighters().sort(sortBy('name')));
+    frameController();
+  });
+  sortFranchiseBtn.addEventListener('click', function () {
+    renderFighters(getFighters().sort(sortBy('franchise')));
+    frameController();
+  });
+}; //Sort Fighter by Order of Appearance in Smash Series
 
-  var FIGHTERS = getFighters(); // Display Fighters
 
-  menu.innerHTML = FIGHTERS.map(function (fighter) {
+function sortByID(a, b) {
+  return a.id - b.id;
+} //Sort Fighter by Name or Franchise Alphabetically
+
+
+function sortBy(type) {
+  return function (a, b) {
+    var textA, textB;
+
+    if (type == 'name') {
+      textA = a.name.toUpperCase();
+      textB = b.name.toUpperCase();
+    } else if (type == 'franchise') {
+      textA = a.franchise.toUpperCase();
+      textB = b.franchise.toUpperCase();
+    }
+
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  };
+} // Sort Fighters by Franchise
+
+
+function showFranchiseOnly(fighters, franch) {
+  var sorted = fighters.filter(function (fighter) {
+    return fighter.franchise == franch;
+  });
+  return sorted;
+} // Event Listener
+
+
+function frameController() {
+  var fighterFrames = Array.from(document.querySelectorAll('.fighter'));
+  fighterFrames.map(function (fighter) {
+    fighter.addEventListener('click', function () {
+      deselectFighters(fighter);
+      applySelected(fighter);
+      playAnnouncer(fighter);
+    });
+  });
+} // Deselect fighters when another is selected
+
+
+function deselectFighters(fighter) {
+  Array.from(document.querySelectorAll('.fighter')).map(function (char) {
+    if (char.classList.contains('selected') && char != fighter) {
+      char.classList.remove('selected');
+    }
+  });
+} // Apply selected styling
+
+
+function applySelected(fighter) {
+  if (fighter.classList.contains('selected')) {
+    fighter.classList.remove('selected');
+  } else {
+    fighter.classList.add('selected');
+  }
+}
+
+function playAnnouncer(fighter) {
+  var announcer = new Audio("media/sounds/".concat(fighter.dataset.name, ".wav"));
+
+  if (fighter.classList.contains('selected')) {
+    announcer.play();
+  }
+}
+
+function renderFighters(fighters) {
+  var menu = document.querySelector('.menu-wrapper');
+  menu.innerHTML = fighters.map(function (fighter, index) {
     return fighter.thumbnailHTML();
   }).join('');
-  applySelectedFrame();
-};
+} // ===============================================================================================================================================================
+
+
+var Character =
+/*#__PURE__*/
+function () {
+  function Character(id, name, franchise, thumbnail) {
+    _classCallCheck(this, Character);
+
+    this.id = id;
+    this.name = name;
+    this.franchise = franchise;
+    this.thumbnail = "media/thumbnails/".concat(thumbnail);
+  }
+
+  _createClass(Character, [{
+    key: "thumbnailHTML",
+    value: function thumbnailHTML() {
+      return "<div class=\"fighter\" data-name=\"".concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+    }
+  }]);
+
+  return Character;
+}();
 
 function getFighters() {
   // Create Fighters
@@ -97,86 +209,4 @@ function getFighters() {
 
   var FIGHTERS = [MARIO, DK, LINK, SAMUS, DARK_SAMUS, YOSHI, KIRBY, FOX, PIKACHU, LUIGI, NESS, CAPTAIN_FALCON, JIGGLYPUFF, PEACH, DAISY, BOWSER, ICE_CLIMBERS, SHEIK, ZELDA, DR_MARIO, PICHU, FALCO, MARTH, LUCINA, YOUNG_LINK, GANONDORF, MEWTWO, ROY, CHROM, GAME_AND_WATCH, META_KNIGHT, PIT, DARK_PIT, ZERO_SUIT_SAMUS, WARIO, SNAKE, IKE, POKEMON_TRAINER, DIDDY_KONG, LUCAS, SONIC, DDD, OLIMAR, LUCARIO, ROB, TOON_LINK, WOLF, VILLAGER, MEGA_MAN, WII_FIT_TRAINER, ROSALINA_AND_LUMA, LITTLE_MAC, GRENINJA, PALUTENA, PAC_MAN, ROBIN, SHULK, BOWSER_JR, DUCK_HUNT, RYU, KEN, CLOUD, CORRIN, BAYONETTA, INKLING, RIDLEY, SIMON, RICHTER, K_ROOL, ISABELLE, INCINEROAR, PIRAHNA_PLANT, MII_BRAWLER, MII_SWORDFIGHTER, MII_GUNNER];
   return FIGHTERS;
-} //Sort Fighter by Order of Appearance in Smash Series
-
-
-function sortByID(a, b) {
-  return a.id - b.id;
-} //Sort Fighter by Name or Franchise Alphabetically
-
-
-function sortBy(type) {
-  return function (a, b) {
-    var textA, textB;
-
-    if (type == 'name') {
-      textA = a.name.toUpperCase();
-      textB = b.name.toUpperCase();
-    } else if (type == 'franchise') {
-      textA = a.franchise.toUpperCase();
-      textB = b.franchise.toUpperCase();
-    }
-
-    return textA < textB ? -1 : textA > textB ? 1 : 0;
-  };
-} // Sort Fighters by Franchise
-
-
-function showFranchiseOnly(fighters, franch) {
-  var sorted = fighters.filter(function (fighter) {
-    return fighter.franchise == franch;
-  });
-  return sorted;
 }
-/*
-============================
-BREAK UP THIS WHOLE FUNCTION
-============================
-*/
-
-
-function applySelectedFrame() {
-  var fighterFrames = Array.from(document.querySelectorAll('.fighter'));
-  fighterFrames.map(function (frame) {
-    frame.addEventListener('click', function () {
-      // Check if other fighters are already selected, remove if they are
-      Array.from(document.querySelectorAll('.fighter')).map(function (char) {
-        if (char.classList.contains('selected') && char != frame) {
-          char.classList.remove('selected');
-        }
-      });
-
-      if (this.classList.contains('selected')) {
-        this.classList.remove('selected');
-      } else {
-        this.classList.add('selected');
-      } // Use this for announcers
-
-
-      var announcer = new Audio("media/sounds/".concat(this.dataset.name, ".wav"));
-      announcer.play();
-    });
-  });
-}
-
-var Character =
-/*#__PURE__*/
-function () {
-  function Character(id, name, franchise, thumbnail) {
-    _classCallCheck(this, Character);
-
-    this.id = id;
-    this.name = name;
-    this.franchise = franchise;
-    this.thumbnail = "media/thumbnails/".concat(thumbnail);
-  }
-
-  _createClass(Character, [{
-    key: "thumbnailHTML",
-    value: function thumbnailHTML() {
-      return "<div class=\"fighter\" data-name=\"".concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
-    }
-  }]);
-
-  return Character;
-}();

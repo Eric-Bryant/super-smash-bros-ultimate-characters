@@ -1,0 +1,20 @@
+@import "../modules/all";
+
+.btn {
+    margin: 0 10px;
+    height: 50%;
+    align-self: center;
+    cursor: pointer;
+    width: auto;
+    min-width: 200px;
+    outline: none;
+    background-image: linear-gradient(to right, $marioRed, $black);
+    border: 2px solid $white;
+    transform: skew(30deg, 0deg);
+    @include fontFace;
+
+    &>span {
+        display: inline-block;
+        transform: skew(-30deg, 0deg);
+    }
+}

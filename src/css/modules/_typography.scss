@@ -2,3 +2,12 @@
 
 $selectScreenFont: 'Roboto Condensed',
 sans-serif;
+
+@mixin fontFace {
+    font-family: $selectScreenFont;
+    color: $white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    text-transform: uppercase;
+}

@@ -15,6 +15,11 @@
         height: 84px;
         margin: 2.5px;
 
+        &:hover {
+            border: 2px solid $fighterHoverPortrait;
+            cursor: pointer;
+        }
+
         &.selected {
             border: 5px solid $fighterHoverPortrait;
 
@@ -39,6 +44,10 @@
                 transform: rotate(45deg) translate(4px, 1px);
                 border-right: none;
             }
+
+            &:hover {
+                box-shadow: none;
+            }
         }
 
         img {
@@ -50,21 +59,20 @@
 
         p {
             position: absolute;
-            text-transform: uppercase;
             width: 100%;
             bottom: 0;
             cursor: default;
             text-align: center;
-            color: $white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            line-height: 1.4rem;
-            font-family: $selectScreenFont;
+            margin: 0;
+            @include fontFace;
             text-shadow: 0px 0px 1px $black,
                 1px 1px 1px $black,
                 2px 2px 1px $black,
                 3px 3px 1px $black;
-            margin: 0;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
@@ -85,6 +93,99 @@
     }
 
     [data-franchise='Super Mario Bros.'] img {
-        background-image: linear-gradient(to bottom right, $marioRed, $marioGreen);
+        background-image: linear-gradient(to bottom right, $marioRed, $marioYellow, $marioGreen, $marioBlue);
+    }
+
+    [data-franchise='Donkey Kong'] img {
+        background-image: linear-gradient(to bottom right, $dkRed, $dkLightOrange, $dkOrange);
+    }
+
+    [data-franchise='The Legend of Zelda'] img {
+        background-image: linear-gradient(to bottom right, $zeldaForestGreen, $zeldaMidGreen, $zeldaLightGreen, $zeldaGold);
+    }
+
+    [data-franchise='Metroid'] img {
+        background-image: linear-gradient(to bottom right, $metroidFair, $metroidOrange, $metroidRed, $metroidGreen);
+    }
+
+    [data-franchise='Kirby'] img {
+        background-image: linear-gradient(to bottom right, $kirbyDarkPink, $kirbyNeutralPink, $kirbyPink);
+    }
+
+    [data-franchise='Star Fox'] img {
+        background-image: linear-gradient(to bottom right, $starFoxDarkBlue, $starFoxLightBlue);
+    }
+
+    [data-franchise='Earthbound'] img {
+        background-image: linear-gradient(to bottom right, $earthboundBrown, $earthboundRed, $earthboundGreen);
+    }
+
+    [data-franchise='F-Zero'] img {
+        background-image: linear-gradient(to bottom right, $fZeroPurple, $starFoxDarkBlue);
+    }
+
+    [data-franchise='Pokemon'] img {
+        background-image: linear-gradient(to bottom right, $pokemonRed, $pokemonYellow);
+    }
+
+    [data-franchise='Fire Emblem'] img {
+        background-image: linear-gradient(to bottom right, $fireEmblemBlue, $fireEmblemRed);
+    }
+
+    [data-franchise='Kid Icarus'] img {
+        background-image: linear-gradient(to bottom right, $kidIcarusGold, $kidIcarusBlack);
+    }
+
+    [data-franchise='Metal Gear Solid'] img {
+        background-image: linear-gradient(to bottom right, $mgsDarkGreen, $mgsGreen, $mgsGrey, $mgsBlack);
+    }
+
+    [data-franchise='Sonic'] img {
+        background-image: linear-gradient(to bottom right, $sonicBlue, $sonicYellow);
+    }
+
+    [data-franchise='Pikmin'] img {
+        background-image: linear-gradient(to bottom right, $pikminPurple, $pikminWhite, $pikminBlue);
+    }
+
+    [data-franchise='Animal Crossing'] img {
+        background-image: linear-gradient(to bottom right, $animalCrossingGreen, $animalCrossingWhite, $animalCrossingPink);
+    }
+
+    [data-franchise='Mega Man'] img {
+        background-image: linear-gradient(to bottom right, $megamanDarkBlue, $megamanBlue, $megamanTeal, $megamanLightBlue);
+    }
+
+    [data-franchise='Punch-out'] img {
+        background-image: linear-gradient(to bottom right, $punchOutGreen, $punchOutBlack);
+    }
+
+    [data-franchise='Pac-Man'] img {
+        background-image: linear-gradient(to bottom right, $pacManYellow, $pacManBlack);
+    }
+
+    [data-franchise='Duck Hunt'] img {
+        background-image: linear-gradient(to bottom right, $duckHuntBlue, $duckHuntLightBlue, $duckHuntGreen, $duckHuntBrown);
+    }
+
+    [data-franchise='Xenoblade Chronicles'] img {
+        background-image: linear-gradient(to bottom right, $xenoRed, $xenoBlue, $xenoWhite);
+    }
+
+    [data-franchise='Street Fighter'] img {
+        background-image: linear-gradient(to bottom right, $streetFighterRed, $streetFighterYellow, $streetFighterWhite);
+    }
+
+    [data-franchise='Final Fantasy'] img,
+    [data-franchise='Bayonetta'] img {
+        background-image: linear-gradient(to bottom right, $ffDarkBlue, $ffLightBlue);
+    }
+
+    [data-franchise='Splatoon'] img {
+        background-image: linear-gradient(to bottom right, $splatoonBlue, $splatoonOrange);
+    }
+
+    [data-franchise='Castlevania'] img {
+        background-image: linear-gradient(to bottom right, $castlevaniaRed, $castlevaniaBlue, $castlevaniaLightBlue);
     }
 }
