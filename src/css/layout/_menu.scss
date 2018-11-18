@@ -14,6 +14,7 @@
         flex-basis: 125px;
         height: 84px;
         margin: 2.5px;
+        transition: transform 0.5s;
 
         &:hover {
             border: 2px solid $fighterHoverPortrait;
@@ -187,5 +188,33 @@
 
     [data-franchise='Castlevania'] img {
         background-image: linear-gradient(to bottom right, $castlevaniaRed, $castlevaniaBlue, $castlevaniaLightBlue);
+    }
+
+    $x: 1;
+
+    @while $x < 71 {
+
+        @if ($x > 0 and $x <=12) or ($x > 23 and $x <=36) or ($x > 49 and $x <=64) {
+
+            [data-id="#{$x}"],
+            [data-id="4.1"],
+            [data-id="25.1"],
+            [data-id="28.1"],
+            [data-id="60.1"] {
+                transform: translateX(100vw);
+            }
+        }
+
+        @else if ($x > 12 and $x <=23) or ($x > 36 and $x <=49) or ($x > 64) {
+
+            [data-id="#{$x}"],
+            [data-id="13.1"],
+            [data-id="21.1"],
+            [data-id="66.1"] {
+                transform: translateX(-100vw);
+            }
+        }
+
+        $x: $x+1;
     }
 }

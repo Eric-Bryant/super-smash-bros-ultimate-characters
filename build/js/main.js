@@ -11,23 +11,49 @@ window.onload = function () {
   var sortNumberBtn = document.querySelector('#sort-number');
   var sortNameBtn = document.querySelector('#sort-name');
   var sortFranchiseBtn = document.querySelector('#sort-franchise');
+  var filterFranchiseBtn = document.querySelector('#filter-franchise');
   renderFighters(getFighters());
   frameController();
+  rearrangeFighters('show');
   sortResetBtn.addEventListener('click', function () {
-    renderFighters(getFighters());
-    frameController();
+    rearrangeFighters('hide');
+    setTimeout(function () {
+      renderFighters(getFighters());
+      frameController();
+      setTimeout(function () {
+        rearrangeFighters('show');
+      }, 50);
+    }, 550);
   });
   sortNumberBtn.addEventListener('click', function () {
-    renderFighters(getFighters().sort(sortByID));
-    frameController();
+    rearrangeFighters('hide');
+    setTimeout(function () {
+      renderFighters(getFighters().sort(sortByID));
+      frameController();
+      setTimeout(function () {
+        rearrangeFighters('show');
+      }, 50);
+    }, 550);
   });
   sortNameBtn.addEventListener('click', function () {
-    renderFighters(getFighters().sort(sortBy('name')));
-    frameController();
+    rearrangeFighters('hide');
+    setTimeout(function () {
+      renderFighters(getFighters().sort(sortBy('name')));
+      frameController();
+      setTimeout(function () {
+        rearrangeFighters('show');
+      }, 50);
+    }, 550);
   });
   sortFranchiseBtn.addEventListener('click', function () {
-    renderFighters(getFighters().sort(sortBy('franchise')));
-    frameController();
+    rearrangeFighters('hide');
+    setTimeout(function () {
+      renderFighters(getFighters().sort(sortBy('franchise')));
+      frameController();
+      setTimeout(function () {
+        rearrangeFighters('show');
+      }, 50);
+    }, 550);
   });
 }; //Sort Fighter by Order of Appearance in Smash Series
 
@@ -63,8 +89,8 @@ function showFranchiseOnly(fighters, franch) {
 
 
 function frameController() {
-  var fighterFrames = Array.from(document.querySelectorAll('.fighter'));
-  fighterFrames.map(function (fighter) {
+  var fighters = Array.from(document.querySelectorAll('.fighter'));
+  fighters.map(function (fighter) {
     fighter.addEventListener('click', function () {
       deselectFighters(fighter);
       applySelected(fighter);
@@ -88,6 +114,28 @@ function applySelected(fighter) {
     fighter.classList.remove('selected');
   } else {
     fighter.classList.add('selected');
+  }
+}
+
+function rearrangeFighters(type) {
+  var fighters = Array.from(document.querySelectorAll('.fighter'));
+
+  if (type == 'hide') {
+    fighters.map(function (fighter) {
+      if (fighter.dataset.id > 0 && fighter.dataset.id <= 12 || fighter.dataset.id > 23 && fighter.dataset.id <= 36 || fighter.dataset.id > 49 && fighter.dataset.id <= 64) {
+        fighter.style.transform = 'translateX(100vw)';
+      } else if (fighter.dataset.id > 12 && fighter.dataset.id <= 23 || fighter.dataset.id > 36 && fighter.dataset.id <= 49 || fighter.dataset.id > 64) {
+        fighter.style.transform = 'translateX(-100vw)';
+      }
+    });
+  } else if (type == 'show') {
+    fighters.map(function (fighter) {
+      if (fighter.dataset.id > 0 && fighter.dataset.id <= 12 || fighter.dataset.id > 23 && fighter.dataset.id <= 36 || fighter.dataset.id > 49 && fighter.dataset.id <= 64) {
+        fighter.style.transform = 'translateX(0)';
+      } else if (fighter.dataset.id > 12 && fighter.dataset.id <= 23 || fighter.dataset.id > 36 && fighter.dataset.id <= 49 || fighter.dataset.id > 64) {
+        fighter.style.transform = 'translateX(0)';
+      }
+    });
   }
 }
 
@@ -122,7 +170,7 @@ function () {
   _createClass(Character, [{
     key: "thumbnailHTML",
     value: function thumbnailHTML() {
-      return "<div class=\"fighter\" data-name=\"".concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+      return "<div class=\"fighter\" data-id=\"".concat(this.id, "\" data-name=\"").concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
     }
   }]);
 

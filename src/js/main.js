@@ -3,27 +3,54 @@ window.onload = () => {
     const sortNumberBtn = document.querySelector('#sort-number');
     const sortNameBtn = document.querySelector('#sort-name');
     const sortFranchiseBtn = document.querySelector('#sort-franchise');
+    const filterFranchiseBtn = document.querySelector('#filter-franchise');
+
     renderFighters(getFighters());
     frameController();
+    rearrangeFighters('show');
 
     sortResetBtn.addEventListener('click', () => {
-        renderFighters(getFighters());
-        frameController();
+        rearrangeFighters('hide');
+        setTimeout(() => {
+            renderFighters(getFighters());
+            frameController();
+            setTimeout(() => {
+                rearrangeFighters('show');
+            }, 50);
+        }, 550);
     });
 
     sortNumberBtn.addEventListener('click', () => {
-        renderFighters(getFighters().sort(sortByID));
-        frameController();
+        rearrangeFighters('hide');
+        setTimeout(() => {
+            renderFighters(getFighters().sort(sortByID));
+            frameController();
+            setTimeout(() => {
+                rearrangeFighters('show');
+            }, 50);
+        }, 550);
     });
 
     sortNameBtn.addEventListener('click', () => {
-        renderFighters(getFighters().sort(sortBy('name')));
-        frameController();
+        rearrangeFighters('hide');
+        setTimeout(() => {
+            renderFighters(getFighters().sort(sortBy('name')));
+            frameController();
+            setTimeout(() => {
+                rearrangeFighters('show');
+            }, 50);
+        }, 550);
     });
 
     sortFranchiseBtn.addEventListener('click', () => {
-        renderFighters(getFighters().sort(sortBy('franchise')));
-        frameController();
+        rearrangeFighters('hide');
+        setTimeout(() => {
+            renderFighters(getFighters().sort(sortBy('franchise')));
+            frameController();
+            setTimeout(() => {
+                rearrangeFighters('show');
+            }, 50);
+        }, 550);
     });
 }
 
@@ -58,8 +85,8 @@ function showFranchiseOnly(fighters, franch) {
 
 // Event Listener
 function frameController() {
-    const fighterFrames = Array.from(document.querySelectorAll('.fighter'));
-    fighterFrames
+    const fighters = Array.from(document.querySelectorAll('.fighter'));
+    fighters
         .map(fighter => {
             fighter.addEventListener('click', () => {
                 deselectFighters(fighter);
@@ -89,6 +116,37 @@ function applySelected(fighter) {
     }
 }
 
+function rearrangeFighters(type) {
+
+    const fighters = Array.from(document.querySelectorAll('.fighter'));
+
+    if (type == 'hide') {
+        fighters.map(fighter => {
+            if ((fighter.dataset.id > 0 && fighter.dataset.id <= 12) ||
+                (fighter.dataset.id > 23 && fighter.dataset.id <= 36) ||
+                (fighter.dataset.id > 49 && fighter.dataset.id <= 64)) {
+                fighter.style.transform = 'translateX(100vw)';
+            } else if ((fighter.dataset.id > 12 && fighter.dataset.id <= 23) ||
+                (fighter.dataset.id > 36 && fighter.dataset.id <= 49) ||
+                (fighter.dataset.id > 64)) {
+                fighter.style.transform = 'translateX(-100vw)';
+            }
+        });
+    } else if (type == 'show') {
+        fighters.map(fighter => {
+            if ((fighter.dataset.id > 0 && fighter.dataset.id <= 12) ||
+                (fighter.dataset.id > 23 && fighter.dataset.id <= 36) ||
+                (fighter.dataset.id > 49 && fighter.dataset.id <= 64)) {
+                fighter.style.transform = 'translateX(0)';
+            } else if ((fighter.dataset.id > 12 && fighter.dataset.id <= 23) ||
+                (fighter.dataset.id > 36 && fighter.dataset.id <= 49) ||
+                (fighter.dataset.id > 64)) {
+                fighter.style.transform = 'translateX(0)';
+            }
+        });
+    }
+}
+
 function playAnnouncer(fighter) {
     const announcer = new Audio(`media/sounds/${fighter.dataset.name}.wav`);
     if (fighter.classList.contains('selected')) {
@@ -98,6 +156,7 @@ function playAnnouncer(fighter) {
 
 function renderFighters(fighters) {
     const menu = document.querySelector('.menu-wrapper');
+
     menu.innerHTML = fighters.map((fighter, index) => {
         return fighter.thumbnailHTML();
     }).join('');
@@ -114,7 +173,7 @@ class Character {
     }
 
     thumbnailHTML() {
-        return `<div class="fighter" data-name="${this.name}" data-franchise="${this.franchise}">
+        return `<div class="fighter" data-id="${this.id}" data-name="${this.name}" data-franchise="${this.franchise}">
                     <img src="${this.thumbnail}"/>
                     <p>${this.name}</p>
                 </div>`;
