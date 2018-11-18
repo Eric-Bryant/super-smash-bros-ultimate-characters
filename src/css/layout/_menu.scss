@@ -3,11 +3,11 @@
 .menu-wrapper {
     margin: 0px auto 0;
     width: 90vw;
-    // min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
     .fighter {
         position: relative;
@@ -17,7 +17,6 @@
         transition: transform 0.5s;
 
         &:hover {
-            border: 2px solid $fighterHoverPortrait;
             cursor: pointer;
         }
 

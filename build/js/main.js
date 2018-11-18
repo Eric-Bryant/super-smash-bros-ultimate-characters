@@ -14,7 +14,9 @@ window.onload = function () {
   var filterFranchiseBtn = document.querySelector('#filter-franchise');
   renderFighters(getFighters());
   frameController();
-  rearrangeFighters('show');
+  setTimeout(function () {
+    rearrangeFighters('show');
+  }, 50);
   sortResetBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
     setTimeout(function () {

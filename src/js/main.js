@@ -7,7 +7,9 @@ window.onload = () => {
 
     renderFighters(getFighters());
     frameController();
-    rearrangeFighters('show');
+    setTimeout(() => {
+        rearrangeFighters('show');
+    }, 50);
 
     sortResetBtn.addEventListener('click', () => {
         rearrangeFighters('hide');
