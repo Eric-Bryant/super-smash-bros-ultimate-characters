@@ -4,9 +4,11 @@ window.onload = () => {
     const sortNameBtn = document.querySelector('#sort-name');
     const sortFranchiseBtn = document.querySelector('#sort-franchise');
     const filterFranchiseBtn = document.querySelector('#filter-franchise');
+    const filterFranchDropdown = document.querySelector('.franchise-dropdown');
+    const selectSound = new Audio('media/sounds/select.wav');
 
     renderFighters(getFighters());
-    frameController();
+    frameController(selectSound);
     setTimeout(() => {
         rearrangeFighters('show');
     }, 50);
@@ -15,44 +17,62 @@ window.onload = () => {
         rearrangeFighters('hide');
         setTimeout(() => {
             renderFighters(getFighters());
-            frameController();
+            frameController(selectSound);
             setTimeout(() => {
                 rearrangeFighters('show');
             }, 50);
         }, 550);
+        selectSound.play();
     });
 
     sortNumberBtn.addEventListener('click', () => {
         rearrangeFighters('hide');
         setTimeout(() => {
             renderFighters(getFighters().sort(sortByID));
-            frameController();
+            frameController(selectSound);
             setTimeout(() => {
                 rearrangeFighters('show');
             }, 50);
         }, 550);
+        selectSound.play();
     });
 
     sortNameBtn.addEventListener('click', () => {
         rearrangeFighters('hide');
         setTimeout(() => {
             renderFighters(getFighters().sort(sortBy('name')));
-            frameController();
+            frameController(selectSound);
             setTimeout(() => {
                 rearrangeFighters('show');
             }, 50);
         }, 550);
+        selectSound.play();
+    });
+
+    filterFranchiseBtn.addEventListener('click', () => {
+        const listItems = Array.from(document.querySelectorAll('.franchise-dropdown li'));
+        selectSound.play();
+        filterFranchDropdown.style.height = "300px";
+        setTimeout(() => {
+            listItems.map(item => {
+                item.style.display = "block";
+            });
+        }, 300);
+
+        // clean up selectSound
+        filterFranchiseEvents(selectSound);
     });
 
     sortFranchiseBtn.addEventListener('click', () => {
         rearrangeFighters('hide');
         setTimeout(() => {
             renderFighters(getFighters().sort(sortBy('franchise')));
-            frameController();
+            frameController(selectSound);
             setTimeout(() => {
                 rearrangeFighters('show');
             }, 50);
         }, 550);
+        selectSound.play();
     });
 }
 
@@ -86,7 +106,7 @@ function showFranchiseOnly(fighters, franch) {
 }
 
 // Event Listener
-function frameController() {
+function frameController(selectSound) {
     const fighters = Array.from(document.querySelectorAll('.fighter'));
     fighters
         .map(fighter => {
@@ -94,6 +114,7 @@ function frameController() {
                 deselectFighters(fighter);
                 applySelected(fighter);
                 playAnnouncer(fighter);
+                selectSound.play();
             });
         });
 }
@@ -162,6 +183,27 @@ function renderFighters(fighters) {
     menu.innerHTML = fighters.map((fighter, index) => {
         return fighter.thumbnailHTML();
     }).join('');
+}
+
+// Clean up shit with select sound
+function filterFranchiseEvents(selectSound) {
+    const franchises = Array.from(document.querySelectorAll('.franchise-dropdown li'));
+
+    franchises.map(franchise => {
+        franchise.addEventListener('click', () => {
+            rearrangeFighters('hide')
+            setTimeout(() => {
+                renderFighters(showFranchiseOnly(getFighters(), franchise.dataset.franchises));
+                frameController(selectSound);
+                setTimeout(() => {
+                    rearrangeFighters('show');
+                }, 50);
+            }, 550);
+
+        });
+    });
+
+
 }
 
 // ===============================================================================================================================================================

@@ -12,8 +12,10 @@ window.onload = function () {
   var sortNameBtn = document.querySelector('#sort-name');
   var sortFranchiseBtn = document.querySelector('#sort-franchise');
   var filterFranchiseBtn = document.querySelector('#filter-franchise');
+  var filterFranchDropdown = document.querySelector('.franchise-dropdown');
+  var selectSound = new Audio('media/sounds/select.wav');
   renderFighters(getFighters());
-  frameController();
+  frameController(selectSound);
   setTimeout(function () {
     rearrangeFighters('show');
   }, 50);
@@ -21,41 +23,57 @@ window.onload = function () {
     rearrangeFighters('hide');
     setTimeout(function () {
       renderFighters(getFighters());
-      frameController();
+      frameController(selectSound);
       setTimeout(function () {
         rearrangeFighters('show');
       }, 50);
     }, 550);
+    selectSound.play();
   });
   sortNumberBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
     setTimeout(function () {
       renderFighters(getFighters().sort(sortByID));
-      frameController();
+      frameController(selectSound);
       setTimeout(function () {
         rearrangeFighters('show');
       }, 50);
     }, 550);
+    selectSound.play();
   });
   sortNameBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
     setTimeout(function () {
       renderFighters(getFighters().sort(sortBy('name')));
-      frameController();
+      frameController(selectSound);
       setTimeout(function () {
         rearrangeFighters('show');
       }, 50);
     }, 550);
+    selectSound.play();
+  });
+  filterFranchiseBtn.addEventListener('click', function () {
+    var listItems = Array.from(document.querySelectorAll('.franchise-dropdown li'));
+    selectSound.play();
+    filterFranchDropdown.style.height = "150px";
+    setTimeout(function () {
+      listItems.map(function (item) {
+        item.style.display = "block";
+      });
+    }, 300); // clean up selectSound
+
+    filterFranchiseEvents(selectSound);
   });
   sortFranchiseBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
     setTimeout(function () {
       renderFighters(getFighters().sort(sortBy('franchise')));
-      frameController();
+      frameController(selectSound);
       setTimeout(function () {
         rearrangeFighters('show');
       }, 50);
     }, 550);
+    selectSound.play();
   });
 }; //Sort Fighter by Order of Appearance in Smash Series
 
@@ -90,13 +108,14 @@ function showFranchiseOnly(fighters, franch) {
 } // Event Listener
 
 
-function frameController() {
+function frameController(selectSound) {
   var fighters = Array.from(document.querySelectorAll('.fighter'));
   fighters.map(function (fighter) {
     fighter.addEventListener('click', function () {
       deselectFighters(fighter);
       applySelected(fighter);
       playAnnouncer(fighter);
+      selectSound.play();
     });
   });
 } // Deselect fighters when another is selected
@@ -154,6 +173,23 @@ function renderFighters(fighters) {
   menu.innerHTML = fighters.map(function (fighter, index) {
     return fighter.thumbnailHTML();
   }).join('');
+} // Clean up shit with select sound
+
+
+function filterFranchiseEvents(selectSound) {
+  var franchises = Array.from(document.querySelectorAll('.franchise-dropdown li'));
+  franchises.map(function (franchise) {
+    franchise.addEventListener('click', function () {
+      rearrangeFighters('hide');
+      setTimeout(function () {
+        renderFighters(showFranchiseOnly(getFighters(), franchise.dataset.franchises));
+        frameController(selectSound);
+        setTimeout(function () {
+          rearrangeFighters('show');
+        }, 50);
+      }, 550);
+    });
+  });
 } // ===============================================================================================================================================================
 
 

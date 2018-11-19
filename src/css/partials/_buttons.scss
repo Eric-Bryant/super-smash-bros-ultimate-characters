@@ -1,7 +1,6 @@
 @import "../modules/all";
 
 .btn {
-    margin: 0 10px;
     height: 50%;
     align-self: center;
     cursor: pointer;
@@ -16,5 +15,38 @@
     &>span {
         display: inline-block;
         transform: skew(-30deg, 0deg);
+    }
+}
+
+.filter-franchise {
+    align-self: center;
+    height: 50%;
+
+    &>.btn {
+        height: 100%;
+    }
+
+    .franchise-dropdown {
+        margin: 0;
+        position: relative;
+        z-index: 9999;
+        background: $white;
+        left: 11px;
+        height: 0;
+        padding: 0 0 0 10px;
+        transition: height 0.3s ease;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+
+        li {
+            display: none;
+            z-index: 9999;
+            list-style: none;
+            padding: 5px 0;
+        }
+
+        li:hover {
+            cursor: pointer;
+        }
     }
 }
