@@ -10,11 +10,29 @@
     background-image: linear-gradient(to right, $marioRed, $black);
     border: 2px solid $white;
     transform: skew(30deg, 0deg);
+    z-index: 100;
     @include fontFace;
 
     &>span {
         display: inline-block;
         transform: skew(-30deg, 0deg);
+    }
+
+    &:before {
+        content: '';
+        background-image: linear-gradient(to right, $black, $marioGreen);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -100;
+    }
+
+    &:hover:before {
+        opacity: 1;
     }
 }
 
@@ -28,25 +46,43 @@
 
     .franchise-dropdown {
         margin: 0;
+        font-family: $selectScreenFont;
+        font-weight: bold;
+        font-size: 1.1rem;
         position: relative;
         z-index: 9999;
         background: $white;
         left: 11px;
         height: 0;
-        padding: 0 0 0 10px;
+        padding: 0;
         transition: height 0.3s ease;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
+        border-bottom-left-radius: 15px;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background: $marioRed;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $white;
+        }
 
         li {
             display: none;
             z-index: 9999;
             list-style: none;
-            padding: 5px 0;
+            padding: 5px 0 5px 10px;
+            text-transform: uppercase;
+            color: $white;
+            background: $marioRed;
+            transition: all 0.3s ease;
         }
 
         li:hover {
             cursor: pointer;
+            background: $black;
         }
     }
 }

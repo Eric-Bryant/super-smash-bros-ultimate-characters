@@ -23,6 +23,7 @@ window.onload = () => {
             }, 50);
         }, 550);
         selectSound.play();
+        filterFranchDropdown.style.height = "0px";
     });
 
     sortNumberBtn.addEventListener('click', () => {
@@ -35,6 +36,7 @@ window.onload = () => {
             }, 50);
         }, 550);
         selectSound.play();
+        filterFranchDropdown.style.height = "0px";
     });
 
     sortNameBtn.addEventListener('click', () => {
@@ -47,6 +49,7 @@ window.onload = () => {
             }, 50);
         }, 550);
         selectSound.play();
+        filterFranchDropdown.style.height = "0px";
     });
 
     filterFranchiseBtn.addEventListener('click', () => {
@@ -60,7 +63,7 @@ window.onload = () => {
         }, 300);
 
         // clean up selectSound
-        filterFranchiseEvents(selectSound);
+        filterFranchiseEvents(selectSound, filterFranchDropdown);
     });
 
     sortFranchiseBtn.addEventListener('click', () => {
@@ -73,6 +76,7 @@ window.onload = () => {
             }, 50);
         }, 550);
         selectSound.play();
+        filterFranchDropdown.style.height = "0px";
     });
 }
 
@@ -186,9 +190,8 @@ function renderFighters(fighters) {
 }
 
 // Clean up shit with select sound
-function filterFranchiseEvents(selectSound) {
+function filterFranchiseEvents(selectSound, franchiseDropdown) {
     const franchises = Array.from(document.querySelectorAll('.franchise-dropdown li'));
-
     franchises.map(franchise => {
         franchise.addEventListener('click', () => {
             rearrangeFighters('hide')
@@ -199,7 +202,8 @@ function filterFranchiseEvents(selectSound) {
                     rearrangeFighters('show');
                 }, 50);
             }, 550);
-
+            selectSound.play();
+            franchiseDropdown.style.height = "0px";
         });
     });
 

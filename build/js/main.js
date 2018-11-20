@@ -29,6 +29,7 @@ window.onload = function () {
       }, 50);
     }, 550);
     selectSound.play();
+    filterFranchDropdown.style.height = "0px";
   });
   sortNumberBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
@@ -40,6 +41,7 @@ window.onload = function () {
       }, 50);
     }, 550);
     selectSound.play();
+    filterFranchDropdown.style.height = "0px";
   });
   sortNameBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
@@ -51,18 +53,19 @@ window.onload = function () {
       }, 50);
     }, 550);
     selectSound.play();
+    filterFranchDropdown.style.height = "0px";
   });
   filterFranchiseBtn.addEventListener('click', function () {
     var listItems = Array.from(document.querySelectorAll('.franchise-dropdown li'));
     selectSound.play();
-    filterFranchDropdown.style.height = "150px";
+    filterFranchDropdown.style.height = "300px";
     setTimeout(function () {
       listItems.map(function (item) {
         item.style.display = "block";
       });
     }, 300); // clean up selectSound
 
-    filterFranchiseEvents(selectSound);
+    filterFranchiseEvents(selectSound, filterFranchDropdown);
   });
   sortFranchiseBtn.addEventListener('click', function () {
     rearrangeFighters('hide');
@@ -74,6 +77,7 @@ window.onload = function () {
       }, 50);
     }, 550);
     selectSound.play();
+    filterFranchDropdown.style.height = "0px";
   });
 }; //Sort Fighter by Order of Appearance in Smash Series
 
@@ -176,7 +180,7 @@ function renderFighters(fighters) {
 } // Clean up shit with select sound
 
 
-function filterFranchiseEvents(selectSound) {
+function filterFranchiseEvents(selectSound, franchiseDropdown) {
   var franchises = Array.from(document.querySelectorAll('.franchise-dropdown li'));
   franchises.map(function (franchise) {
     franchise.addEventListener('click', function () {
@@ -188,6 +192,8 @@ function filterFranchiseEvents(selectSound) {
           rearrangeFighters('show');
         }, 50);
       }, 550);
+      selectSound.play();
+      franchiseDropdown.style.height = "0px";
     });
   });
 } // ===============================================================================================================================================================
