@@ -119,8 +119,19 @@ function frameController(selectSound) {
       deselectFighters(fighter);
       applySelected(fighter);
       playAnnouncer(fighter);
+      renderPortrait(fighter);
       selectSound.play();
     });
+  });
+}
+
+function renderPortrait(fighter) {
+  var fighterFrame = document.querySelector('.character-portrait');
+  var fighters = getFighters();
+  fighters.map(function (char) {
+    if (char.name == fighter.dataset.name) {
+      fighterFrame.innerHTML = char.portraitHTML();
+    }
   });
 } // Deselect fighters when another is selected
 
@@ -140,7 +151,8 @@ function applySelected(fighter) {
   } else {
     fighter.classList.add('selected');
   }
-}
+} //Rearrange fighters with animation
+
 
 function rearrangeFighters(type) {
   var fighters = Array.from(document.querySelectorAll('.fighter'));
@@ -202,19 +214,25 @@ function filterFranchiseEvents(selectSound, franchiseDropdown) {
 var Character =
 /*#__PURE__*/
 function () {
-  function Character(id, name, franchise, thumbnail) {
+  function Character(id, name, franchise, picture) {
     _classCallCheck(this, Character);
 
     this.id = id;
     this.name = name;
     this.franchise = franchise;
-    this.thumbnail = "media/thumbnails/".concat(thumbnail);
+    this.picture = "media/thumbnails/".concat(picture);
+    this.selectedPicture = "media/characters/".concat(picture);
   }
 
   _createClass(Character, [{
     key: "thumbnailHTML",
     value: function thumbnailHTML() {
-      return "<div class=\"fighter\" data-id=\"".concat(this.id, "\" data-name=\"").concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.thumbnail, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+      return "<div class=\"fighter\" data-id=\"".concat(this.id, "\" data-name=\"").concat(this.name, "\" data-franchise=\"").concat(this.franchise, "\">\n                    <img src=\"").concat(this.picture, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+    }
+  }, {
+    key: "portraitHTML",
+    value: function portraitHTML() {
+      return "<div class=\"selected-fighter\">\n                    <img src=\"".concat(this.selectedPicture, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
     }
   }]);
 

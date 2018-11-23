@@ -118,9 +118,20 @@ function frameController(selectSound) {
                 deselectFighters(fighter);
                 applySelected(fighter);
                 playAnnouncer(fighter);
+                renderPortrait(fighter);
                 selectSound.play();
             });
         });
+}
+
+function renderPortrait(fighter) {
+    const fighterFrame = document.querySelector('.character-portrait');
+    const fighters = getFighters();
+    fighters.map(char => {
+        if (char.name == fighter.dataset.name) {
+            fighterFrame.innerHTML = char.portraitHTML();
+        }
+    });
 }
 
 // Deselect fighters when another is selected
@@ -143,6 +154,7 @@ function applySelected(fighter) {
     }
 }
 
+//Rearrange fighters with animation
 function rearrangeFighters(type) {
 
     const fighters = Array.from(document.querySelectorAll('.fighter'));
@@ -206,23 +218,29 @@ function filterFranchiseEvents(selectSound, franchiseDropdown) {
             franchiseDropdown.style.height = "0px";
         });
     });
-
-
 }
 
 // ===============================================================================================================================================================
 
 class Character {
-    constructor(id, name, franchise, thumbnail) {
+    constructor(id, name, franchise, picture) {
         this.id = id;
         this.name = name;
         this.franchise = franchise;
-        this.thumbnail = `media/thumbnails/${thumbnail}`;
+        this.picture = `media/thumbnails/${picture}`;
+        this.selectedPicture = `media/characters/${picture}`;
     }
 
     thumbnailHTML() {
         return `<div class="fighter" data-id="${this.id}" data-name="${this.name}" data-franchise="${this.franchise}">
-                    <img src="${this.thumbnail}"/>
+                    <img src="${this.picture}"/>
+                    <p>${this.name}</p>
+                </div>`;
+    }
+
+    portraitHTML() {
+        return `<div class="selected-fighter">
+                    <img src="${this.selectedPicture}"/>
                     <p>${this.name}</p>
                 </div>`;
     }
