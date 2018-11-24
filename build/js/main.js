@@ -12,8 +12,9 @@ window.onload = function () {
   var sortNameBtn = document.querySelector('#sort-name');
   var sortFranchiseBtn = document.querySelector('#sort-franchise');
   var filterFranchiseBtn = document.querySelector('#filter-franchise');
-  var filterFranchDropdown = document.querySelector('.franchise-dropdown');
-  var selectSound = new Audio('media/sounds/select.wav');
+  var filterFranchDropdown = document.querySelector('.franchise-dropdown'); // const selectSound = new Audio('media/sounds/select.wav');
+
+  var selectSound = new Audio('');
   renderFighters(getFighters());
   frameController(selectSound);
   setTimeout(function () {
@@ -300,7 +301,7 @@ function getFighters() {
   // Create Fighters
   var MARIO = new Character(1, 'Mario', 'Super Mario Bros.', 'mario.png', 'Mario is an all-around fighter who uses his wide variety of techniques to respond to any situation. In Super Smash Bros. Ultimate, he shows up in his Wedding tux and his Builder outfit, and Cappy even makes an appearance!', '<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/INk1W8OujQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen></iframe>');
   var DK = new Character(2, 'Donkey Kong', 'Donkey Kong', 'dk.png', 'His charged punch is one of the strongest attacks in the game! In Super Smash Bros. Ultimate, his Final Smash has been updated from Konga Beat to a flurry of punches!', '<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/K7IsUGeFXP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-  var LINK = new Character(3, 'Link', 'The Legend of Zelda', 'link.png', '', '');
+  var LINK = new Character(3, 'Link', 'The Legend of Zelda', 'link.png', 'Link has been redesigned to match his appearance in The Legend of Zelda: Breath of the Wild. He can now pick up arrows he\'s fired, and his bombs have been upgraded to remote bombs, so you can set them off when the timing is just right!', '<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/kfeUdBi67G4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
   var SAMUS = new Character(4, 'Samus', 'Metroid', 'samus.png', '', '');
   var DARK_SAMUS = new Character(4.1, 'Dark Samus', 'Metroid', 'dark-samus.png', '', '');
   var YOSHI = new Character(5, 'Yoshi', 'Super Mario Bros.', 'yoshi.png', '', '');
