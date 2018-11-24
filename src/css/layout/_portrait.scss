@@ -8,9 +8,52 @@
 }
 
 .character-portrait {
-    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 275px;
     height: auto;
     display: flex;
     flex-direction: column;
     background: linear-gradient(to bottom right, $marioRed, $marioBlue);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    p {
+        @include fontFace;
+        font-size: 2rem;
+        text-align: center;
+        line-height: 1;
+        text-shadow: 0px 2px 10px $black;
+        margin: 0 0 10px 0;
+    }
+
+    p:last-child {
+        font-size: 1.2rem;
+        margin: 0;
+        position: relative;
+        cursor: pointer;
+        border: 2px solid $white;
+        padding: 5px;
+        border-radius: 10px;
+        background: linear-gradient(to right, $marioRed, $black);
+        z-index: 100;
+
+        &:before {
+            content: '';
+            background-image: linear-gradient(to right, $black, $marioGreen);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -100;
+            border-radius: 10px;
+        }
+
+        &:hover:before {
+            opacity: 1;
+        }
+    }
 }

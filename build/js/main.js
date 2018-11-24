@@ -120,6 +120,7 @@ function frameController(selectSound) {
       applySelected(fighter);
       playAnnouncer(fighter);
       renderPortrait(fighter);
+      openModal();
       selectSound.play();
     });
   });
@@ -133,6 +134,34 @@ function renderPortrait(fighter) {
       fighterFrame.innerHTML = char.portraitHTML();
     }
   });
+  fighterFrame.style.opacity = "1";
+}
+
+function openModal() {
+  var modalBtn = document.querySelector('#modal-btn');
+  var modalBg = document.querySelector('.modal-bg');
+  var modal = document.querySelector('.modal');
+  modalBtn.addEventListener('click', function () {
+    modalBg.style.zIndex = "9999";
+    modalBg.style.opacity = "1";
+    modal.style.transform = 'scale(1)';
+    closeModal();
+  });
+}
+
+function closeModal() {
+  var modalBg = document.querySelector('.modal-bg');
+  var modal = document.querySelector('.modal');
+  modalBg.addEventListener('click', close);
+
+  function close(e) {
+    if (!e.target.offsetParent.className.includes('modal')) {
+      modal.style.transform = 'scale(0)';
+      modalBg.style.opacity = "0";
+      modalBg.style.zIndex = "-1";
+      modalBg.removeEventListener('click', close);
+    }
+  }
 } // Deselect fighters when another is selected
 
 
@@ -232,7 +261,7 @@ function () {
   }, {
     key: "portraitHTML",
     value: function portraitHTML() {
-      return "<div class=\"selected-fighter\">\n                    <img src=\"".concat(this.selectedPicture, "\"/>\n                    <p>").concat(this.name, "</p>\n                </div>");
+      return "<div class=\"selected-fighter\">\n                    <img src=\"".concat(this.selectedPicture, "\"/>\n                    <p>").concat(this.name, "</p>\n                    <p id=\"modal-btn\">Info</p>\n                </div>");
     }
   }]);
 

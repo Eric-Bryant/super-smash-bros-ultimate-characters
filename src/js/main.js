@@ -119,6 +119,7 @@ function frameController(selectSound) {
                 applySelected(fighter);
                 playAnnouncer(fighter);
                 renderPortrait(fighter);
+                openModal();
                 selectSound.play();
             });
         });
@@ -132,6 +133,35 @@ function renderPortrait(fighter) {
             fighterFrame.innerHTML = char.portraitHTML();
         }
     });
+    fighterFrame.style.opacity = "1";
+}
+
+function openModal() {
+    const modalBtn = document.querySelector('#modal-btn');
+    const modalBg = document.querySelector('.modal-bg');
+    const modal = document.querySelector('.modal');
+    modalBtn.addEventListener('click', () => {
+        modalBg.style.zIndex = "9999";
+        modalBg.style.opacity = "1";
+        modal.style.transform = 'scale(1)';
+        closeModal();
+    });
+}
+
+function closeModal() {
+    const modalBg = document.querySelector('.modal-bg');
+    const modal = document.querySelector('.modal');
+
+    modalBg.addEventListener('click', close);
+
+    function close(e) {
+        if (!e.target.offsetParent.className.includes('modal')) {
+            modal.style.transform = 'scale(0)';
+            modalBg.style.opacity = "0";
+            modalBg.style.zIndex = "-1";
+            modalBg.removeEventListener('click', close);
+        }
+    }
 }
 
 // Deselect fighters when another is selected
@@ -242,6 +272,7 @@ class Character {
         return `<div class="selected-fighter">
                     <img src="${this.selectedPicture}"/>
                     <p>${this.name}</p>
+                    <p id="modal-btn">Info</p>
                 </div>`;
     }
 }
