@@ -1,7 +1,7 @@
 @import "../modules/all";
 
 .modal-bg {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -20,7 +20,7 @@
     position: relative;
     top: 100px;
     left: 25vw;
-    background: $white;
+    background-image: linear-gradient(to bottom right, $marioRed, $marioBlue);
     transform: scale(0);
     transition: all 0.3s ease;
     padding: 20px;
@@ -28,12 +28,33 @@
     display: flex;
 
     .info,
-    .video {
+    .video-logo {
         width: 50%;
+        padding: 10px;
     }
 
-    .video {
-        align-self: center;
+    .info {
+        h2 {
+            text-align: center;
+            @include fontFace;
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        p {
+            @include fontFace;
+            text-transform: none;
+        }
+    }
+
+    .video-logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        iframe {
+            max-width: 100% !important;
+        }
     }
 
     @media screen and (max-width: 600px) {
@@ -44,20 +65,8 @@
         top: 0;
 
         .info,
-        .video {
+        .video-logo {
             width: 100%;
         }
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        border: 1px solid $black;
-        padding: 10px;
-        border-radius: 100%;
-        background: $black;
-        color: $white;
-        cursor: pointer;
     }
 }

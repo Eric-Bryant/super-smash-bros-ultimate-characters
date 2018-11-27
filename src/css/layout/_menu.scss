@@ -98,6 +98,14 @@
         background-image: linear-gradient(to bottom right, $marioRed, $marioYellow, $marioGreen, $marioBlue);
     }
 
+    [data-franchise='Yoshi'] img {
+        background-image: linear-gradient(to bottom right, $marioGreen, $white);
+    }
+
+    [data-franchise='WarioWare'] img {
+        background-image: linear-gradient(to bottom right, $warioPurple, $warioPurple, $warioYellow);
+    }
+
     [data-franchise='Donkey Kong'] img {
         background-image: linear-gradient(to bottom right, $dkRed, $dkLightOrange, $dkOrange);
     }

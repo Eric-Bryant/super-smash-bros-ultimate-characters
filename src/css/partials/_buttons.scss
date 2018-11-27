@@ -86,3 +86,23 @@
         }
     }
 }
+
+.modal {
+    .close-btn {
+        @include fontFace;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        border-radius: 15px;
+        background: $black;
+        color: $white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: $white;
+            color: $black;
+        }
+    }
+}
