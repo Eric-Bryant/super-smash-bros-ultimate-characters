@@ -56,4 +56,10 @@
             opacity: 1;
         }
     }
+
+    .selected-fighter img {
+        object-fit: contain;
+        max-height: 235px;
+        width: 100%;
+    }
 }
