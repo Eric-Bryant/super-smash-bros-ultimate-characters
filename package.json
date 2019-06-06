@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/shmickle/super-smash-bros-ultimate-characters#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "node-sass": "^4.11.0",
-    "postcss-cli": "^6.1.1",
-    "postcss-preset-env": "^6.5.0"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "node-sass": "^4.12.0",
+    "postcss-cli": "^6.1.2",
+    "postcss-preset-env": "^6.6.0"
   }
 }
