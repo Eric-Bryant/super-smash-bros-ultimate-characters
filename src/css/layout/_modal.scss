@@ -34,6 +34,9 @@
     }
 
     .info {
+        display: flex;
+        flex-direction: column;
+
         h2 {
             text-align: center;
             @include fontFace;
@@ -44,6 +47,10 @@
         p {
             @include fontFace;
             text-transform: none;
+        }
+
+        img {
+            object-fit: contain;
         }
     }
 
