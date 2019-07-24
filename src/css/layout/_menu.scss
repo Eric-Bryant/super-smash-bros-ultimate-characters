@@ -199,9 +199,13 @@
         background-image: linear-gradient(to bottom right, $castlevaniaRed, $castlevaniaBlue, $castlevaniaLightBlue);
     }
 
+    [data-franchise='Persona 5'] img {
+        background-image: linear-gradient(to bottom right, $personaRed, $black, $personaRed);
+    }
+
     $x: 1;
 
-    @while $x < 71 {
+    @while $x < 72 {
 
         @if ($x > 0 and $x <=12) or ($x > 23 and $x <=36) or ($x > 49 and $x <=64) {
 

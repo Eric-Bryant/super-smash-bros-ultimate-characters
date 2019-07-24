@@ -417,6 +417,7 @@ function getFighters() {
     const ISABELLE = new Character(68, 'Isabelle', 'Animal Crossing', 'isabelle.png', 'Isabelle joins the battle from Animal Crossing: New Leaf! She uses various trinkets from around the village to battle. Her side special, "Fishing Rod," not only allows her to snag and bring opponents closer, it can also be used as a recovery move.', '<iframe width="560" height="315" src="https://www.youtube.com/embed/ML8fn3eInnc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', 'animal-crossing');
     const INCINEROAR = new Character(69, 'Incineroar', 'Pokemon', 'incineroar.png', 'A fighter with many special moves that appear to come from the world of pro wrestling. Incineroar has many moves from its original game, like Darkest Lariat, Cross Chop, and Revenge. Its Final Smash is Max Malicious Moonsault. Let the Z-Power explode and deliver a powerful blow!', '<iframe width="560" height="315" src="https://www.youtube.com/embed/eE6Agn9d89U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', 'pokemon');
     const PIRAHNA_PLANT = new Character(70, 'Pirahna Plant', 'Super Mario Bros.', 'pirahna-plant.png', 'Piranha Plant Pipes Up!', '<iframe width="560" height="315" src="https://www.youtube.com/embed/3sZsk8VHY2g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', 'mario');
+    const JOKER = new Character(71, 'Joker', 'Persona 5', 'joker.png', '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/W4PG9qx9x2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', 'persona');
 
     // Array of Fighters for Display Purposes
 
@@ -441,7 +442,7 @@ function getFighters() {
         BOWSER_JR, DUCK_HUNT, RYU, KEN,
         CLOUD, CORRIN, BAYONETTA, INKLING,
         RIDLEY, SIMON, RICHTER, K_ROOL,
-        ISABELLE, INCINEROAR, PIRAHNA_PLANT,
+        ISABELLE, INCINEROAR, PIRAHNA_PLANT, JOKER,
         MII_BRAWLER, MII_SWORDFIGHTER, MII_GUNNER
     ];
 
