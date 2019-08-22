@@ -665,7 +665,8 @@ body {
   overflow-x: hidden; }
 
 body {
-  background: #111111; }
+  background: #111111;
+  min-height: 100vh; }
 
 * {
   box-sizing: border-box; }
