@@ -124,6 +124,8 @@
     background-image: linear-gradient(to bottom right, #731603, #0D2967, #265DC0); }
   .menu-wrapper [data-franchise='Persona 5'] img {
     background-image: linear-gradient(to bottom right, #FE2401, #111111, #FE2401); }
+  .menu-wrapper [data-franchise='Dragon Quest XI'] img {
+    background-image: linear-gradient(to bottom right, #46ACE7, #E9B4D4); }
   .menu-wrapper [data-id="1"],
   .menu-wrapper [data-id="4.1"],
   .menu-wrapper [data-id="25.1"],
@@ -515,6 +517,11 @@
   .menu-wrapper [data-id="66.1"] {
     transform: translateX(-100vw); }
   .menu-wrapper [data-id="71"],
+  .menu-wrapper [data-id="13.1"],
+  .menu-wrapper [data-id="21.1"],
+  .menu-wrapper [data-id="66.1"] {
+    transform: translateX(-100vw); }
+  .menu-wrapper [data-id="72"],
   .menu-wrapper [data-id="13.1"],
   .menu-wrapper [data-id="21.1"],
   .menu-wrapper [data-id="66.1"] {
